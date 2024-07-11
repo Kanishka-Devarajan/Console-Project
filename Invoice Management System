@@ -1,0 +1,88 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("-----INVOICE MANAGEMENT SYSTEM:-----");
+        System.out.println(" ");
+        System.out.println("-----CREATE INVOICE:----- ");
+        System.out.print("Enter no.of.Customers : ");
+        int numCustomers = sc.nextInt(); // Number of customers, you can change this according to your requirements
+
+        // Arrays to store customer data
+        String[] names = new String[numCustomers];
+        String[] addresses = new String[numCustomers];
+        String[] emails = new String[numCustomers];
+        int[] mobileNums = new int[numCustomers];
+        int[] invoiceNums = new int[numCustomers];
+        String[] itemNames = new String[numCustomers];
+        int[] prices = new int[numCustomers];
+        int[] quantities = new int[numCustomers];
+
+        for (int i = 0; i < numCustomers; i++) {
+            System.out.println("Invoice of customer " + (i + 1));
+            
+            System.out.print("Customer Name : ");
+            names[i] = sc.next();
+
+            System.out.print("Address : ");
+            addresses[i] = sc.next();
+
+            System.out.print("Email : ");
+            emails[i] = sc.next();
+
+            System.out.print("Mobile Number : ");
+            mobileNums[i] = sc.nextInt();
+
+            System.out.print("Invoice Number : ");
+            invoiceNums[i] = sc.nextInt();
+
+            System.out.print("Item Name : ");
+            itemNames[i] = sc.next();
+
+            System.out.print("Price : ");
+            prices[i] = sc.nextInt();
+
+            System.out.print("Enter number of quantity : ");
+            quantities[i] = sc.nextInt();
+            
+            System.out.println(" ");
+
+        }
+
+        // Prompt user to enter invoice number
+        System.out.println("-----RETRIEVE INVOICE OF PARTICULAR USER:----- ");
+
+        System.out.print("Enter the invoice number to retrieve details: ");
+        int searchInvoiceNum = sc.nextInt();
+        System.out.println(" ");
+
+        boolean found = false;
+        // Use loop to search for the invoice number in the invoiceNums array
+        for (int i = 0; i < numCustomers; i++) {
+            if (invoiceNums[i] == searchInvoiceNum) {
+                displayCustomerDetails(i, names, addresses, emails, mobileNums, invoiceNums, itemNames, prices, quantities);
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            System.out.println("INVOICE NUMBER NOT FOUND!!");
+        }
+
+        sc.close();
+    }
+
+    // Method to display customer details
+    private static void displayCustomerDetails(int index, String[] names, String[] addresses, String[] emails, int[] mobileNums,
+                                                int[] invoiceNums, String[] itemNames, int[] prices, int[] quantities) {
+        System.out.println("Customer Name : " + names[index]);
+        System.out.println("Address : " + addresses[index]);
+        System.out.println("Email : " + emails[index]);
+        System.out.println("Mobile Number : " + mobileNums[index]);
+        System.out.println("Invoice Number : " + invoiceNums[index]);
+        System.out.println("Item Name : " + itemNames[index]);
+        System.out.println("Price : " + prices[index]);
+        System.out.println("Quantity : " + quantities[index]);
+    }
+}
